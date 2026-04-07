@@ -58,7 +58,7 @@ export function LandingPage() {
       </main>
 
       <footer className="border-t border-white/8 py-8">
-        <div className="container-shell flex flex-col items-center justify-between gap-4 text-sm text-white/40 md:flex-row">
+        <div className="container-shell flex flex-col items-start justify-between gap-4 text-sm text-white/40 md:flex-row md:items-center">
           <div className="flex items-center gap-3">
             <Image
               src="/ballantir-logo.png"
@@ -71,7 +71,9 @@ export function LandingPage() {
               BALLANTIR BASKETBALL
             </span>
           </div>
-          <p>Built for investor conversations, early access, and strategic partnerships.</p>
+          <p className="max-w-md text-left md:text-right">
+            Built for investor conversations, early access, and strategic partnerships.
+          </p>
         </div>
       </footer>
     </div>
@@ -96,18 +98,18 @@ function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/6 bg-black/45 backdrop-blur-xl">
-      <div className="container-shell flex min-h-20 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-3">
+      <div className="container-shell flex min-h-18 items-center justify-between gap-4 sm:min-h-20 sm:gap-6">
+        <Link href="/" className="flex min-w-0 items-center gap-3">
           <Image
             src="/ballantir-logo.png"
             alt="BALLANTIR Basketball"
             width={40}
             height={40}
-            className="h-10 w-10 rounded-sm object-cover ring-1 ring-[var(--accent)]/25"
+            className="h-9 w-9 rounded-sm object-cover ring-1 ring-[var(--accent)]/25 sm:h-10 sm:w-10"
           />
-          <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-white/35">BALLANTIR</p>
-            <p className="text-sm font-semibold text-white">Basketball</p>
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/35 sm:text-xs sm:tracking-[0.28em]">BALLANTIR</p>
+            <p className="truncate text-sm font-semibold text-white">Basketball</p>
           </div>
         </Link>
 
@@ -130,7 +132,7 @@ function SiteHeader({
           type="button"
           aria-label="Toggle menu"
           onClick={onToggleMenu}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 md:hidden"
         >
           {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -165,7 +167,7 @@ function SiteHeader({
 
 function HeroSection() {
   return (
-    <section className="hero-shell relative overflow-hidden pt-16">
+    <section className="hero-shell relative overflow-hidden pt-10 sm:pt-16">
       <div className="hero-overlay-grid" />
       <motion.div
         className="hero-glow-left"
@@ -194,29 +196,29 @@ function HeroSection() {
         <CircuitBoard className="h-full w-full text-[var(--accent-secondary)]/10" />
       </motion.div>
 
-      <div className="container-shell relative z-10 grid min-h-[calc(100vh-5rem)] items-center gap-16 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="container-shell relative z-10 grid min-h-[calc(100vh-4.5rem)] items-center gap-10 py-10 sm:gap-14 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          <div className="hero-badge">
+          <div className="hero-badge max-w-full">
             <Sparkle className="h-4 w-4 text-[var(--accent)]" />
             <span>Investor-grade intelligence platform</span>
           </div>
 
-          <div className="mt-7 flex items-center gap-4">
+          <div className="mt-6 flex items-center gap-3 sm:mt-7 sm:gap-4">
             <Image
               src="/ballantir-logo.png"
               alt="BALLANTIR Basketball"
               width={58}
               height={58}
-              className="h-12 w-12 rounded-lg border border-[var(--accent)]/30 object-cover shadow-[0_0_30px_rgba(200,155,60,0.15)] sm:h-14 sm:w-14"
+              className="h-11 w-11 rounded-lg border border-[var(--accent)]/30 object-cover shadow-[0_0_30px_rgba(200,155,60,0.15)] sm:h-14 sm:w-14"
             />
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.34em] text-white/40">BALLANTIR</p>
-              <p className="text-sm font-semibold tracking-[0.18em] text-[var(--accent)]">BASKETBALL</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/40 sm:text-xs sm:tracking-[0.34em]">BALLANTIR</p>
+              <p className="text-xs font-semibold tracking-[0.14em] text-[var(--accent)] sm:text-sm sm:tracking-[0.18em]">BASKETBALL</p>
             </div>
           </div>
 
@@ -226,26 +228,26 @@ function HeroSection() {
               The Future of AI-Driven Sports Intelligence
             </span>
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:mt-7 sm:text-lg sm:leading-8 lg:text-xl">
             {landingPageContent.hero}
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a href="#cta" className={cn(buttonVariants({ size: "lg" }), "button-tech")}>
+            <a href="#cta" className={cn(buttonVariants({ size: "lg" }), "button-tech w-full sm:w-auto")}>
               <Sparkle className="h-4 w-4" />
               Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#vision-video"
-              className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "button-tech-subtle")}
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "button-tech-subtle w-full sm:w-auto")}
             >
               <Play className="h-4 w-4" />
               Watch Platform Vision
             </a>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
             {landingPageContent.metrics.slice(0, 3).map((metric, index) => (
               <motion.div
                 key={metric.label}
@@ -268,15 +270,15 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="panel panel-cinematic relative overflow-hidden rounded-[2rem] p-6"
+          className="panel panel-cinematic relative overflow-hidden rounded-[1.5rem] p-4 sm:rounded-[2rem] sm:p-6"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,155,60,0.18),transparent_35%)]" />
           <div className="absolute inset-0 opacity-20">
             <CircuitBoard className="h-full w-full text-white/20" />
           </div>
 
-          <div className="relative rounded-[1.5rem] border border-white/8 bg-[rgba(4,7,13,0.88)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-            <div className="flex items-center justify-between border-b border-white/8 pb-4">
+          <div className="relative rounded-[1.25rem] border border-white/8 bg-[rgba(4,7,13,0.88)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] sm:rounded-[1.5rem] sm:p-6">
+            <div className="flex flex-col gap-3 border-b border-white/8 pb-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.22em] text-[var(--accent-secondary)]">
                   Decision Feed
@@ -368,12 +370,12 @@ function SectionDivider({ label }: { label: string }) {
 
 function VideoSection() {
   return (
-    <section id="vision-video" className="section-cinematic py-24 sm:py-32">
+    <section id="vision-video" className="section-cinematic py-20 sm:py-32">
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Platform Vision</p>
           <h2 className="section-title mt-4 font-semibold">See how the intelligence layer comes together.</h2>
-          <p className="mt-6 text-lg leading-8 text-white/58">
+          <p className="mt-6 text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
             A concise walkthrough of how BALLANTIR
             turns film, search, voice, and structured context into faster basketball decisions.
           </p>
@@ -384,21 +386,21 @@ function VideoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.7 }}
-          className="panel panel-cinematic mt-12 overflow-hidden rounded-[2rem] p-4"
+          className="panel panel-cinematic mt-10 overflow-hidden rounded-[1.5rem] p-3 sm:mt-12 sm:rounded-[2rem] sm:p-4"
         >
-          <div className="video-panel relative aspect-video rounded-[1.5rem] border border-[var(--accent)]/18">
-            <div className="absolute right-6 top-6 rounded-full border border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">
+          <div className="video-panel relative aspect-video rounded-[1.1rem] border border-[var(--accent)]/18 sm:rounded-[1.5rem]">
+            <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 sm:right-6 sm:top-6 sm:px-3 sm:text-[10px] sm:tracking-[0.24em]">
               Cloudinary-ready
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-              <div className="video-play-ring flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10">
-                <Play className="h-8 w-8 text-[var(--accent)]" />
+              <div className="video-play-ring flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 sm:h-20 sm:w-20">
+                <Play className="h-6 w-6 text-[var(--accent)] sm:h-8 sm:w-8" />
               </div>
-              <p className="mt-6 font-mono text-xs uppercase tracking-[0.26em] text-[var(--accent)]">
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)] sm:mt-6 sm:text-xs sm:tracking-[0.26em]">
                 platform walkthrough
               </p>
-              <h3 className="mt-3 text-3xl font-semibold text-white">Cinematic product demo</h3>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/55">
+              <h3 className="mt-2 text-2xl font-semibold text-white sm:mt-3 sm:text-3xl">Cinematic product demo</h3>
+              <p className="mt-3 max-w-xl text-xs leading-5 text-white/55 sm:mt-4 sm:max-w-2xl sm:text-sm sm:leading-6">
                 How BALLANTIR
                 changes the speed and quality of decision-making for teams, players, and investors.
               </p>
@@ -422,12 +424,12 @@ function NarrativeSection({
   description: string;
 }) {
   return (
-    <section id={id} className="py-24 sm:py-32">
+    <section id={id} className="py-20 sm:py-32">
       <div className="container-shell">
         <div className="section-card mx-auto max-w-4xl text-center">
           <p className="section-eyebrow">{eyebrow}</p>
           <h2 className="section-title mt-4 font-semibold">{title}</h2>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/58">{description}</p>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">{description}</p>
         </div>
       </div>
     </section>
@@ -436,17 +438,17 @@ function NarrativeSection({
 
 function SolutionSection() {
   return (
-    <section id="solution" className="section-cinematic py-24 sm:py-32">
+    <section id="solution" className="section-cinematic py-20 sm:py-32">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">One Intelligence System</p>
           <h2 className="section-title mt-4 font-semibold">
             Film as truth. Search and voice as routing. Decisions as output.
           </h2>
-          <p className="mt-6 text-lg leading-8 text-white/58">{landingPageContent.solution}</p>
+          <p className="mt-6 text-base leading-7 text-white/58 sm:text-lg sm:leading-8">{landingPageContent.solution}</p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-3">
           {landingPageContent.featureCards.map((card, index) => {
             const Icon = icons[index];
 
@@ -457,39 +459,41 @@ function SolutionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="panel feature-card rounded-[1.75rem] p-6"
+                className="panel feature-card rounded-[1.5rem] p-5 sm:rounded-[1.75rem] sm:p-6"
               >
                 <div className="icon-chip">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white">{card.title}</h3>
+                <h3 className="mt-5 text-xl font-semibold text-white sm:mt-6 sm:text-2xl">{card.title}</h3>
                 <p className="mt-4 text-base leading-7 text-white/55">{card.description}</p>
               </motion.article>
             );
           })}
         </div>
 
-        <div className="panel panel-cinematic mt-10 rounded-[2rem] p-6 sm:p-8">
+        <div className="panel panel-cinematic mt-8 rounded-[1.5rem] p-5 sm:mt-10 sm:rounded-[2rem] sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
               <p className="section-eyebrow">Command Example</p>
-              <h3 className="mt-4 text-3xl font-semibold">Ask basketball in plain language.</h3>
-              <p className="mt-4 max-w-xl text-base leading-7 text-white/58">
+              <h3 className="mt-4 text-2xl font-semibold sm:text-3xl">Ask basketball in plain language.</h3>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-white/58 sm:text-base sm:leading-7">
                 The system routes natural-language or microphone input through the right context layers,
                 then returns an answer built for real decisions rather than a pile of dashboards.
               </p>
             </div>
 
-            <div className="command-panel rounded-[1.5rem] border border-white/8 p-5">
-              <div className="flex items-center gap-3 border-b border-white/8 pb-4 text-sm text-white/55">
+            <div className="command-panel rounded-[1.25rem] border border-white/8 p-4 sm:rounded-[1.5rem] sm:p-5">
+              <div className="flex items-start gap-3 border-b border-white/8 pb-4 text-sm text-white/55">
                 <Mic className="h-4 w-4 text-[var(--accent)]" />
-                <span className="font-mono">&gt; Which wings create the best fit beside a high-usage guard?</span>
+                <span className="break-words font-mono text-xs leading-5 sm:text-sm">
+                  &gt; Which wings create the best fit beside a high-usage guard?
+                </span>
               </div>
               <div className="mt-5 space-y-4">
                 {landingPageContent.commandOutput.map((item) => (
                   <div key={item.title} className="feature-card rounded-2xl border border-white/8 bg-white/[0.03] p-4">
                     <div className="flex items-center justify-between gap-4">
-                      <p className="text-lg font-medium text-white">{item.title}</p>
+                      <p className="text-base font-medium text-white sm:text-lg">{item.title}</p>
                       <span className="rounded-full bg-[var(--accent)]/12 px-3 py-1 text-xs text-[var(--accent)]">
                         {item.tag}
                       </span>
@@ -508,14 +512,14 @@ function SolutionSection() {
 
 function AudienceSection() {
   return (
-    <section id="audiences" className="py-24 sm:py-32">
+    <section id="audiences" className="py-20 sm:py-32">
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Two Operating Views</p>
           <h2 className="section-title mt-4 font-semibold">Intelligence for players and teams.</h2>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-2">
           {landingPageContent.audiences.map((audience, index) => (
             <motion.article
               key={audience.title}
@@ -523,11 +527,11 @@ function AudienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="panel feature-card rounded-[2rem] p-7 sm:p-8"
+              className="panel feature-card rounded-[1.5rem] p-5 sm:rounded-[2rem] sm:p-8"
             >
               <p className="section-eyebrow">{audience.kicker}</p>
-              <h3 className="mt-4 text-3xl font-semibold">{audience.title}</h3>
-              <p className="mt-4 text-base leading-7 text-white/58">{audience.copy}</p>
+              <h3 className="mt-4 text-2xl font-semibold sm:text-3xl">{audience.title}</h3>
+              <p className="mt-4 text-sm leading-6 text-white/58 sm:text-base sm:leading-7">{audience.copy}</p>
               <div className="mt-8 space-y-3">
                 {audience.points.map((point) => (
                   <div
@@ -557,17 +561,17 @@ function DifferenceSection() {
   ];
 
   return (
-    <section id="difference" className="section-cinematic py-24 sm:py-32">
+    <section id="difference" className="section-cinematic py-20 sm:py-32">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">Why BALLANTIR Is Different</p>
           <h2 className="section-title mt-4 font-semibold">This is not another analytics dashboard.</h2>
-          <p className="mt-6 text-lg leading-8 text-white/58">
+          <p className="mt-6 text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
             BALLANTIR is designed to reduce noise, compress decision time, and keep every answer grounded in what happened on court.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-3">
           {cards.map((card, index) => (
             <motion.article
               key={card.title}
@@ -575,12 +579,12 @@ function DifferenceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.1, duration: 0.55 }}
-              className="panel feature-card rounded-[1.75rem] p-6"
+              className="panel feature-card rounded-[1.5rem] p-5 sm:rounded-[1.75rem] sm:p-6"
             >
               <div className="icon-chip">
                 <card.icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-6 text-2xl font-semibold">{card.title}</h3>
+              <h3 className="mt-5 text-xl font-semibold sm:mt-6 sm:text-2xl">{card.title}</h3>
               <p className="mt-4 text-base leading-7 text-white/55">{card.copy}</p>
             </motion.article>
           ))}
@@ -592,19 +596,19 @@ function DifferenceSection() {
 
 function VisionSection() {
   return (
-    <section id="vision" className="py-24 sm:py-32">
+    <section id="vision" className="py-20 sm:py-32">
       <div className="container-shell">
-        <div className="panel panel-cinematic overflow-hidden rounded-[2.25rem] p-8 sm:p-10">
+        <div className="panel panel-cinematic overflow-hidden rounded-[1.75rem] p-5 sm:rounded-[2.25rem] sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div className="icon-chip flex h-20 w-20 items-center justify-center rounded-full">
-              <Globe className="h-9 w-9 text-[var(--accent)]" />
+            <div className="icon-chip flex h-16 w-16 items-center justify-center rounded-full sm:h-20 sm:w-20">
+              <Globe className="h-7 w-7 text-[var(--accent)] sm:h-9 sm:w-9" />
             </div>
             <div>
               <p className="section-eyebrow">The Bigger Vision</p>
               <h2 className="section-title mt-4 font-semibold">
                 Basketball is the first build in a multi-sport intelligence system.
               </h2>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/58">
+              <p className="mt-6 max-w-3xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
                 {landingPageContent.vision}
               </p>
             </div>
@@ -617,12 +621,12 @@ function VisionSection() {
 
 function CtaSection() {
   return (
-    <section id="cta" className="pb-24 pt-8 sm:pb-32">
+    <section id="cta" className="pb-20 pt-6 sm:pb-32 sm:pt-8">
       <div className="container-shell">
-        <div className="panel panel-cinematic rounded-[2.5rem] px-6 py-10 text-center sm:px-10 sm:py-14">
+        <div className="panel panel-cinematic rounded-[1.75rem] px-5 py-8 text-center sm:rounded-[2.5rem] sm:px-10 sm:py-14">
           <p className="section-eyebrow">Early Access And Investor Conversations</p>
           <h2 className="section-title mt-4 font-semibold">Join the first wave of strategic partners.</h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/58">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
             Meet the platform early, shape the product direction, and start the investor conversation while the system is still selective.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
