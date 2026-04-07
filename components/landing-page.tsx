@@ -284,7 +284,7 @@ function VideoSection() {
           <p className="section-eyebrow">Platform Vision</p>
           <h2 className="section-title mt-4 font-semibold">See how the intelligence layer comes together.</h2>
           <p className="mt-6 text-lg leading-8 text-white/58">
-            This section is designed for the flagship product video: a concise walkthrough of how BALLANTIR
+            A concise walkthrough of how BALLANTIR
             turns film, search, voice, and structured context into faster basketball decisions.
           </p>
         </div>
