@@ -349,6 +349,7 @@ img {
   background:
     radial-gradient(circle at center, rgba(200, 155, 60, 0.1), transparent 24%),
     linear-gradient(135deg, rgba(200, 155, 60, 0.08), rgba(8, 12, 20, 0.96));
+  overflow: hidden;
 }
 
 .video-panel::before {
@@ -493,6 +494,11 @@ img {
     transform: none;
     box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
   }
+
+  .video-panel::before {
+    background-size: 28px 28px;
+    opacity: 0.18;
+  }
 }
 
 @media (max-width: 480px) {
@@ -516,5 +522,11 @@ img {
 
   .ticker-chip {
     min-width: 12.5rem;
+  }
+
+  .video-panel {
+    background:
+      radial-gradient(circle at center, rgba(200, 155, 60, 0.12), transparent 30%),
+      linear-gradient(180deg, rgba(200, 155, 60, 0.1), rgba(8, 12, 20, 0.98));
   }
 }

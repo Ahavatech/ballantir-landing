@@ -388,11 +388,11 @@ function VideoSection() {
           transition={{ duration: 0.7 }}
           className="panel panel-cinematic mt-10 overflow-hidden rounded-[1.5rem] p-3 sm:mt-12 sm:rounded-[2rem] sm:p-4"
         >
-          <div className="video-panel relative aspect-video rounded-[1.1rem] border border-[var(--accent)]/18 sm:rounded-[1.5rem]">
+          <div className="video-panel relative aspect-[4/5] min-h-[24rem] rounded-[1.1rem] border border-[var(--accent)]/18 sm:aspect-video sm:min-h-0 sm:rounded-[1.5rem]">
             <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 sm:right-6 sm:top-6 sm:px-3 sm:text-[10px] sm:tracking-[0.24em]">
               Cloudinary-ready
             </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pb-6 pt-14 text-center sm:px-6 sm:pb-0 sm:pt-0">
               <div className="video-play-ring flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 sm:h-20 sm:w-20">
                 <Play className="h-6 w-6 text-[var(--accent)] sm:h-8 sm:w-8" />
               </div>
