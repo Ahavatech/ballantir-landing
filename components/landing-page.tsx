@@ -1,0 +1,549 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BrainCircuit,
+  ChevronRight,
+  Globe,
+  Menu,
+  Mic,
+  Play,
+  Search,
+  ShieldCheck,
+  Target,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+
+import { buttonVariants } from "@/components/ui/button";
+import { landingPageContent } from "@/lib/content";
+import { cn } from "@/lib/utils";
+
+const icons = [Play, Search, BrainCircuit];
+
+export function LandingPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <div className="overflow-x-hidden bg-transparent text-white">
+      <SiteHeader
+        isMenuOpen={isMenuOpen}
+        onToggleMenu={() => setIsMenuOpen((open) => !open)}
+        onCloseMenu={() => setIsMenuOpen(false)}
+      />
+
+      <main>
+        <HeroSection />
+        <MetricsSection />
+        <VideoSection />
+        <NarrativeSection
+          id="problem"
+          eyebrow="The Problem"
+          title="Basketball decisions still move slower than the game."
+          description={landingPageContent.problem}
+        />
+        <SolutionSection />
+        <AudienceSection />
+        <DifferenceSection />
+        <VisionSection />
+        <CtaSection />
+      </main>
+
+      <footer className="border-t border-white/8 py-8">
+        <div className="container-shell flex flex-col items-center justify-between gap-4 text-sm text-white/40 md:flex-row">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/ballantir-logo.png"
+              alt="BALLANTIR Basketball"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-sm object-cover"
+            />
+            <span className="font-medium tracking-[0.18em] text-white/55">
+              BALLANTIR BASKETBALL
+            </span>
+          </div>
+          <p>Built for investor conversations, early access, and strategic partnerships.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function SiteHeader({
+  isMenuOpen,
+  onToggleMenu,
+  onCloseMenu,
+}: {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+  onCloseMenu: () => void;
+}) {
+  const navItems = [
+    { href: "#solution", label: "Platform" },
+    { href: "#audiences", label: "Stakeholders" },
+    { href: "#difference", label: "Difference" },
+    { href: "#vision", label: "Vision" },
+  ];
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-white/6 bg-black/45 backdrop-blur-xl">
+      <div className="container-shell flex min-h-20 items-center justify-between gap-6">
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/ballantir-logo.png"
+            alt="BALLANTIR Basketball"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-sm object-cover"
+          />
+          <div>
+            <p className="text-xs uppercase tracking-[0.28em] text-white/35">BALLANTIR</p>
+            <p className="text-sm font-semibold text-white">Basketball</p>
+          </div>
+        </Link>
+
+        <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className="transition hover:text-[var(--accent)]">
+              {item.label}
+            </a>
+          ))}
+          <a href="#cta" className={cn(buttonVariants({ size: "sm" }))}>
+            Request Early Access
+          </a>
+        </nav>
+
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          onClick={onToggleMenu}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 md:hidden"
+        >
+          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {isMenuOpen ? (
+        <div className="border-t border-white/6 bg-[rgba(8,8,8,0.96)] md:hidden">
+          <div className="container-shell flex flex-col gap-4 py-5">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={onCloseMenu}
+                className="rounded-2xl border border-white/8 px-4 py-3 text-sm text-white/75"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              href="#cta"
+              onClick={onCloseMenu}
+              className={cn(buttonVariants(), "w-full")}
+            >
+              Request Early Access
+            </a>
+          </div>
+        </div>
+      ) : null}
+    </header>
+  );
+}
+
+function HeroSection() {
+  return (
+    <section className="relative overflow-hidden pt-20">
+      <div className="container-shell grid min-h-[calc(100vh-5rem)] items-center gap-16 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
+        >
+          <p className="section-eyebrow mb-5">{landingPageContent.tagline}</p>
+          <h1 className="section-title max-w-4xl font-semibold text-white">
+            BALLANTIR Basketball
+            <span className="block bg-gradient-to-r from-[var(--accent)] via-[#e7c06e] to-[var(--accent-secondary)] bg-clip-text text-transparent">
+              The Future of AI-Driven Sports Intelligence
+            </span>
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/62">
+            {landingPageContent.hero}
+          </p>
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="#cta" className={cn(buttonVariants({ size: "lg" }))}>
+              Request Early Access
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#vision-video"
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
+            >
+              <Play className="h-4 w-4" />
+              Watch Platform Vision
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="panel relative overflow-hidden rounded-[2rem] p-6"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,155,60,0.18),transparent_35%)]" />
+          <div className="relative rounded-[1.5rem] border border-white/8 bg-[rgba(4,7,13,0.88)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+            <div className="flex items-center justify-between border-b border-white/8 pb-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-white/30">
+                  Decision Feed
+                </p>
+                <p className="mt-1 text-sm font-medium text-white">Investor-grade intelligence loop</p>
+              </div>
+              <span className="rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1 text-xs text-[var(--accent)]">
+                Live concept
+              </span>
+            </div>
+
+            <div className="mt-6 space-y-4">
+              {landingPageContent.decisionFeed.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.35 + index * 0.12, duration: 0.6 }}
+                  className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.18em] text-white/35">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-lg font-medium text-white">{item.title}</p>
+                    </div>
+                    <span className="rounded-full bg-[var(--accent)]/12 px-3 py-1 font-mono text-xs text-[var(--accent)]">
+                      {item.badge}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-white/55">{item.copy}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {landingPageContent.metrics.slice(0, 3).map((metric) => (
+                <div
+                  key={metric.label}
+                  className="rounded-2xl border border-white/8 bg-black/25 p-4"
+                >
+                  <p className="text-2xl font-semibold text-[var(--accent)]">{metric.value}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/35">
+                    {metric.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function MetricsSection() {
+  return (
+    <section className="border-y border-white/6 bg-black/30 py-6">
+      <div className="container-shell grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {landingPageContent.metrics.map((metric, index) => (
+          <motion.div
+            key={metric.label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ delay: index * 0.08, duration: 0.55 }}
+            className="rounded-3xl border border-white/8 bg-white/[0.025] px-6 py-5"
+          >
+            <p className="text-3xl font-semibold text-[var(--accent)]">{metric.value}</p>
+            <p className="mt-2 text-sm text-white/45">{metric.label}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function VideoSection() {
+  return (
+    <section id="vision-video" className="py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow">Platform Vision</p>
+          <h2 className="section-title mt-4 font-semibold">See how the intelligence layer comes together.</h2>
+          <p className="mt-6 text-lg leading-8 text-white/58">
+            This section is designed for the flagship product video: a concise walkthrough of how BALLANTIR
+            turns film, search, voice, and structured context into faster basketball decisions.
+          </p>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.7 }}
+          className="panel mt-12 overflow-hidden rounded-[2rem] p-4"
+        >
+          <div className="relative aspect-video rounded-[1.5rem] border border-[var(--accent)]/18 bg-[linear-gradient(135deg,rgba(200,155,60,0.08),rgba(8,12,20,0.96))]">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-25" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+                <Play className="h-8 w-8 text-[var(--accent)]" />
+              </div>
+              <p className="mt-6 font-mono text-xs uppercase tracking-[0.26em] text-[var(--accent)]">
+                platform walkthrough
+              </p>
+              <h3 className="mt-3 text-3xl font-semibold text-white">Cinematic product demo</h3>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/55">
+                How BALLANTIR
+                changes the speed and quality of decision-making for teams, players, and investors.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function NarrativeSection({
+  id,
+  eyebrow,
+  title,
+  description,
+}: {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <section id={id} className="py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="section-eyebrow">{eyebrow}</p>
+          <h2 className="section-title mt-4 font-semibold">{title}</h2>
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/58">{description}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolutionSection() {
+  return (
+    <section id="solution" className="border-y border-white/6 bg-black/20 py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="max-w-3xl">
+          <p className="section-eyebrow">One Intelligence System</p>
+          <h2 className="section-title mt-4 font-semibold">
+            Film as truth. Search and voice as routing. Decisions as output.
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-white/58">{landingPageContent.solution}</p>
+        </div>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {landingPageContent.featureCards.map((card, index) => {
+            const Icon = icons[index];
+
+            return (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="panel rounded-[1.75rem] p-6"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/12 text-[var(--accent)]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold text-white">{card.title}</h3>
+                <p className="mt-4 text-base leading-7 text-white/55">{card.description}</p>
+              </motion.article>
+            );
+          })}
+        </div>
+
+        <div className="panel mt-10 rounded-[2rem] p-6 sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            <div>
+              <p className="section-eyebrow">Command Example</p>
+              <h3 className="mt-4 text-3xl font-semibold">Ask basketball in plain language.</h3>
+              <p className="mt-4 max-w-xl text-base leading-7 text-white/58">
+                The system routes natural-language or microphone input through the right context layers,
+                then returns an answer built for real decisions rather than a pile of dashboards.
+              </p>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-white/8 bg-[rgba(6,6,6,0.7)] p-5">
+              <div className="flex items-center gap-3 border-b border-white/8 pb-4 text-sm text-white/55">
+                <Mic className="h-4 w-4 text-[var(--accent)]" />
+                <span className="font-mono">&gt; Which wings create the best fit beside a high-usage guard?</span>
+              </div>
+              <div className="mt-5 space-y-4">
+                {landingPageContent.commandOutput.map((item) => (
+                  <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-lg font-medium text-white">{item.title}</p>
+                      <span className="rounded-full bg-[var(--accent)]/12 px-3 py-1 text-xs text-[var(--accent)]">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-white/55">{item.copy}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AudienceSection() {
+  return (
+    <section id="audiences" className="py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow">Two Operating Views</p>
+          <h2 className="section-title mt-4 font-semibold">Intelligence for players and teams.</h2>
+        </div>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          {landingPageContent.audiences.map((audience, index) => (
+            <motion.article
+              key={audience.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="panel rounded-[2rem] p-7 sm:p-8"
+            >
+              <p className="section-eyebrow">{audience.kicker}</p>
+              <h3 className="mt-4 text-3xl font-semibold">{audience.title}</h3>
+              <p className="mt-4 text-base leading-7 text-white/58">{audience.copy}</p>
+              <div className="mt-8 space-y-3">
+                {audience.points.map((point) => (
+                  <div
+                    key={point}
+                    className="flex items-center gap-3 rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/70"
+                  >
+                    <ChevronRight className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DifferenceSection() {
+  const cards = [
+    { icon: Target, ...landingPageContent.difference[0] },
+    { icon: Play, ...landingPageContent.difference[1] },
+    { icon: ShieldCheck, ...landingPageContent.difference[2] },
+  ];
+
+  return (
+    <section id="difference" className="border-y border-white/6 bg-black/20 py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="max-w-3xl">
+          <p className="section-eyebrow">Why BALLANTIR Is Different</p>
+          <h2 className="section-title mt-4 font-semibold">This is not another analytics dashboard.</h2>
+          <p className="mt-6 text-lg leading-8 text-white/58">
+            BALLANTIR is designed to reduce noise, compress decision time, and keep every answer grounded in what happened on court.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {cards.map((card, index) => (
+            <motion.article
+              key={card.title}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.1, duration: 0.55 }}
+              className="panel rounded-[1.75rem] p-6"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/12 text-[var(--accent)]">
+                <card.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-6 text-2xl font-semibold">{card.title}</h3>
+              <p className="mt-4 text-base leading-7 text-white/55">{card.copy}</p>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisionSection() {
+  return (
+    <section id="vision" className="py-24 sm:py-32">
+      <div className="container-shell">
+        <div className="panel overflow-hidden rounded-[2.25rem] p-8 sm:p-10">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--accent)]/10">
+              <Globe className="h-9 w-9 text-[var(--accent)]" />
+            </div>
+            <div>
+              <p className="section-eyebrow">The Bigger Vision</p>
+              <h2 className="section-title mt-4 font-semibold">
+                Basketball is the first build in a multi-sport intelligence system.
+              </h2>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/58">
+                {landingPageContent.vision}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CtaSection() {
+  return (
+    <section id="cta" className="pb-24 pt-8 sm:pb-32">
+      <div className="container-shell">
+        <div className="panel rounded-[2.5rem] px-6 py-10 text-center sm:px-10 sm:py-14">
+          <p className="section-eyebrow">Early Access And Investor Conversations</p>
+          <h2 className="section-title mt-4 font-semibold">Join the first wave of strategic partners.</h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/58">
+            Meet the platform early, shape the product direction, and start the investor conversation while the system is still selective.
+          </p>
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <a href="mailto:invest@ballantir.ai" className={cn(buttonVariants({ size: "lg" }))}>
+              Request Early Access
+            </a>
+            <a
+              href="mailto:partners@ballantir.ai"
+              className={cn(buttonVariants({ size: "lg", variant: "secondary" }))}
+            >
+              Start Investor Conversation
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

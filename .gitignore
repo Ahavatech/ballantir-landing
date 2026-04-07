@@ -1,0 +1,48 @@
+# dependencies
+/node_modules
+/.pnpm-store
+
+# next build output
+/.next
+/out
+
+# build artifacts
+/build
+/dist
+/coverage
+
+# caches
+.cache/
+.turbo/
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+!.env.example
+!.env*.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# typescript
+*.tsbuildinfo
+
+# deployment
+.vercel/
+
+# editors and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# local certs and keys
+*.pem
