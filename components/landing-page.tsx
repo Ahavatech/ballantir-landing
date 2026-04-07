@@ -19,10 +19,12 @@ import {
 import { useState } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
+import { Basketball, CircuitBoard, Sparkle } from "@/components/ui/brand-icons";
 import { landingPageContent } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const icons = [Play, Search, BrainCircuit];
+const tickerMetrics = [...landingPageContent.metrics, ...landingPageContent.metrics];
 
 export function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +40,7 @@ export function LandingPage() {
       <main>
         <HeroSection />
         <MetricsSection />
+        <SectionDivider label="Signal Architecture" />
         <VideoSection />
         <NarrativeSection
           id="problem"
@@ -45,8 +48,10 @@ export function LandingPage() {
           title="Basketball decisions still move slower than the game."
           description={landingPageContent.problem}
         />
+        <SectionDivider label="One Intelligence System" />
         <SolutionSection />
         <AudienceSection />
+        <SectionDivider label="Why It Compounds" />
         <DifferenceSection />
         <VisionSection />
         <CtaSection />
@@ -60,7 +65,7 @@ export function LandingPage() {
               alt="BALLANTIR Basketball"
               width={28}
               height={28}
-              className="h-7 w-7 rounded-sm object-cover"
+              className="h-7 w-7 rounded-sm object-cover ring-1 ring-[var(--accent)]/20"
             />
             <span className="font-medium tracking-[0.18em] text-white/55">
               BALLANTIR BASKETBALL
@@ -98,7 +103,7 @@ function SiteHeader({
             alt="BALLANTIR Basketball"
             width={40}
             height={40}
-            className="h-10 w-10 rounded-sm object-cover"
+            className="h-10 w-10 rounded-sm object-cover ring-1 ring-[var(--accent)]/25"
           />
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-white/35">BALLANTIR</p>
@@ -108,11 +113,15 @@ function SiteHeader({
 
         <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="transition hover:text-[var(--accent)]">
+            <a
+              key={item.href}
+              href={item.href}
+              className="transition hover:text-[var(--accent)]"
+            >
               {item.label}
             </a>
           ))}
-          <a href="#cta" className={cn(buttonVariants({ size: "sm" }))}>
+          <a href="#cta" className={cn(buttonVariants({ size: "sm" }), "button-tech")}>
             Request Early Access
           </a>
         </nav>
@@ -143,7 +152,7 @@ function SiteHeader({
             <a
               href="#cta"
               onClick={onCloseMenu}
-              className={cn(buttonVariants(), "w-full")}
+              className={cn(buttonVariants(), "button-tech w-full")}
             >
               Request Early Access
             </a>
@@ -156,36 +165,102 @@ function SiteHeader({
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-20">
-      <div className="container-shell grid min-h-[calc(100vh-5rem)] items-center gap-16 py-16 lg:grid-cols-[1.05fr_0.95fr]">
+    <section className="hero-shell relative overflow-hidden pt-16">
+      <div className="hero-overlay-grid" />
+      <motion.div
+        className="hero-glow-left"
+        animate={{ opacity: [0.42, 0.64, 0.42], scale: [1, 1.06, 1] }}
+        transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="hero-glow-right"
+        animate={{ opacity: [0.18, 0.32, 0.18], y: [0, -18, 0] }}
+        transition={{ repeat: Infinity, duration: 14, ease: "easeInOut" }}
+      />
+
+      <motion.div
+        className="pointer-events-none absolute -right-20 top-20 z-0 hidden h-[32rem] w-[32rem] lg:block"
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 80, ease: "linear" }}
+      >
+        <Basketball className="h-full w-full text-[var(--accent)]/10 hero-circuit-glow" />
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[44rem] lg:block"
+        animate={{ x: [0, 18, 0] }}
+        transition={{ repeat: Infinity, duration: 20, ease: "easeInOut" }}
+      >
+        <CircuitBoard className="h-full w-full text-[var(--accent-secondary)]/10" />
+      </motion.div>
+
+      <div className="container-shell relative z-10 grid min-h-[calc(100vh-5rem)] items-center gap-16 py-16 lg:grid-cols-[1.05fr_0.95fr]">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          <p className="section-eyebrow mb-5">{landingPageContent.tagline}</p>
-          <h1 className="section-title max-w-4xl font-semibold text-white">
+          <div className="hero-badge">
+            <Sparkle className="h-4 w-4 text-[var(--accent)]" />
+            <span>Investor-grade intelligence platform</span>
+          </div>
+
+          <div className="mt-7 flex items-center gap-4">
+            <Image
+              src="/ballantir-logo.png"
+              alt="BALLANTIR Basketball"
+              width={58}
+              height={58}
+              className="h-12 w-12 rounded-lg border border-[var(--accent)]/30 object-cover shadow-[0_0_30px_rgba(200,155,60,0.15)] sm:h-14 sm:w-14"
+            />
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.34em] text-white/40">BALLANTIR</p>
+              <p className="text-sm font-semibold tracking-[0.18em] text-[var(--accent)]">BASKETBALL</p>
+            </div>
+          </div>
+
+          <h1 className="section-title hero-title max-w-5xl font-semibold text-white">
             BALLANTIR Basketball
-            <span className="block bg-gradient-to-r from-[var(--accent)] via-[#e7c06e] to-[var(--accent-secondary)] bg-clip-text text-transparent">
+            <span className="hero-title-accent block">
               The Future of AI-Driven Sports Intelligence
             </span>
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/62">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
             {landingPageContent.hero}
           </p>
+
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a href="#cta" className={cn(buttonVariants({ size: "lg" }))}>
+            <a href="#cta" className={cn(buttonVariants({ size: "lg" }), "button-tech")}>
+              <Sparkle className="h-4 w-4" />
               Request Early Access
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#vision-video"
-              className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
+              className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "button-tech-subtle")}
             >
               <Play className="h-4 w-4" />
               Watch Platform Vision
             </a>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {landingPageContent.metrics.slice(0, 3).map((metric, index) => (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 + index * 0.1, duration: 0.55 }}
+                className="hero-metric-card"
+              >
+                <div className="signal-dot" />
+                <p className="metric-flash text-2xl font-semibold text-[var(--accent)]">{metric.value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/38">
+                  {metric.label}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
@@ -193,13 +268,17 @@ function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="panel relative overflow-hidden rounded-[2rem] p-6"
+          className="panel panel-cinematic relative overflow-hidden rounded-[2rem] p-6"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,155,60,0.18),transparent_35%)]" />
+          <div className="absolute inset-0 opacity-20">
+            <CircuitBoard className="h-full w-full text-white/20" />
+          </div>
+
           <div className="relative rounded-[1.5rem] border border-white/8 bg-[rgba(4,7,13,0.88)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
             <div className="flex items-center justify-between border-b border-white/8 pb-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-white/30">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--accent-secondary)]">
                   Decision Feed
                 </p>
                 <p className="mt-1 text-sm font-medium text-white">Investor-grade intelligence loop</p>
@@ -216,7 +295,7 @@ function HeroSection() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.35 + index * 0.12, duration: 0.6 }}
-                  className="rounded-2xl border border-white/8 bg-white/[0.03] p-4"
+                  className="feature-card rounded-2xl border border-white/8 bg-white/[0.03] p-4"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div>
@@ -238,9 +317,11 @@ function HeroSection() {
               {landingPageContent.metrics.slice(0, 3).map((metric) => (
                 <div
                   key={metric.label}
-                  className="rounded-2xl border border-white/8 bg-black/25 p-4"
+                  className="metric-ticker rounded-2xl border border-white/8 bg-black/25 p-4"
                 >
-                  <p className="text-2xl font-semibold text-[var(--accent)]">{metric.value}</p>
+                  <p className="metric-flash text-2xl font-semibold text-[var(--accent)]">
+                    {metric.value}
+                  </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/35">
                     {metric.label}
                   </p>
@@ -257,28 +338,37 @@ function HeroSection() {
 function MetricsSection() {
   return (
     <section className="border-y border-white/6 bg-black/30 py-6">
-      <div className="container-shell grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        {landingPageContent.metrics.map((metric, index) => (
-          <motion.div
-            key={metric.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ delay: index * 0.08, duration: 0.55 }}
-            className="rounded-3xl border border-white/8 bg-white/[0.025] px-6 py-5"
-          >
-            <p className="text-3xl font-semibold text-[var(--accent)]">{metric.value}</p>
-            <p className="mt-2 text-sm text-white/45">{metric.label}</p>
-          </motion.div>
-        ))}
+      <div className="ticker-shell">
+        <motion.div
+          className="ticker-track"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ repeat: Infinity, duration: 24, ease: "linear" }}
+        >
+          {tickerMetrics.map((metric, index) => (
+            <div key={`${metric.label}-${index}`} className="ticker-chip">
+              <span className="ticker-value">{metric.value}</span>
+              <span className="ticker-label">{metric.label}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
 
+function SectionDivider({ label }: { label: string }) {
+  return (
+    <div className="container-shell py-6">
+      <div className="section-divider">
+        <span>{label}</span>
+      </div>
+    </div>
+  );
+}
+
 function VideoSection() {
   return (
-    <section id="vision-video" className="py-24 sm:py-32">
+    <section id="vision-video" className="section-cinematic py-24 sm:py-32">
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Platform Vision</p>
@@ -294,12 +384,14 @@ function VideoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.7 }}
-          className="panel mt-12 overflow-hidden rounded-[2rem] p-4"
+          className="panel panel-cinematic mt-12 overflow-hidden rounded-[2rem] p-4"
         >
-          <div className="relative aspect-video rounded-[1.5rem] border border-[var(--accent)]/18 bg-[linear-gradient(135deg,rgba(200,155,60,0.08),rgba(8,12,20,0.96))]">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-25" />
+          <div className="video-panel relative aspect-video rounded-[1.5rem] border border-[var(--accent)]/18">
+            <div className="absolute right-6 top-6 rounded-full border border-white/10 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">
+              Cloudinary-ready
+            </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10">
+              <div className="video-play-ring flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10">
                 <Play className="h-8 w-8 text-[var(--accent)]" />
               </div>
               <p className="mt-6 font-mono text-xs uppercase tracking-[0.26em] text-[var(--accent)]">
@@ -332,7 +424,7 @@ function NarrativeSection({
   return (
     <section id={id} className="py-24 sm:py-32">
       <div className="container-shell">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="section-card mx-auto max-w-4xl text-center">
           <p className="section-eyebrow">{eyebrow}</p>
           <h2 className="section-title mt-4 font-semibold">{title}</h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/58">{description}</p>
@@ -344,7 +436,7 @@ function NarrativeSection({
 
 function SolutionSection() {
   return (
-    <section id="solution" className="border-y border-white/6 bg-black/20 py-24 sm:py-32">
+    <section id="solution" className="section-cinematic py-24 sm:py-32">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">One Intelligence System</p>
@@ -365,9 +457,9 @@ function SolutionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="panel rounded-[1.75rem] p-6"
+                className="panel feature-card rounded-[1.75rem] p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/12 text-[var(--accent)]">
+                <div className="icon-chip">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-6 text-2xl font-semibold text-white">{card.title}</h3>
@@ -377,7 +469,7 @@ function SolutionSection() {
           })}
         </div>
 
-        <div className="panel mt-10 rounded-[2rem] p-6 sm:p-8">
+        <div className="panel panel-cinematic mt-10 rounded-[2rem] p-6 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
             <div>
               <p className="section-eyebrow">Command Example</p>
@@ -388,14 +480,14 @@ function SolutionSection() {
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] border border-white/8 bg-[rgba(6,6,6,0.7)] p-5">
+            <div className="command-panel rounded-[1.5rem] border border-white/8 p-5">
               <div className="flex items-center gap-3 border-b border-white/8 pb-4 text-sm text-white/55">
                 <Mic className="h-4 w-4 text-[var(--accent)]" />
                 <span className="font-mono">&gt; Which wings create the best fit beside a high-usage guard?</span>
               </div>
               <div className="mt-5 space-y-4">
                 {landingPageContent.commandOutput.map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+                  <div key={item.title} className="feature-card rounded-2xl border border-white/8 bg-white/[0.03] p-4">
                     <div className="flex items-center justify-between gap-4">
                       <p className="text-lg font-medium text-white">{item.title}</p>
                       <span className="rounded-full bg-[var(--accent)]/12 px-3 py-1 text-xs text-[var(--accent)]">
@@ -431,7 +523,7 @@ function AudienceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="panel rounded-[2rem] p-7 sm:p-8"
+              className="panel feature-card rounded-[2rem] p-7 sm:p-8"
             >
               <p className="section-eyebrow">{audience.kicker}</p>
               <h3 className="mt-4 text-3xl font-semibold">{audience.title}</h3>
@@ -440,10 +532,12 @@ function AudienceSection() {
                 {audience.points.map((point) => (
                   <div
                     key={point}
-                    className="flex items-center gap-3 rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/70"
+                    className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/70 transition hover:border-[var(--accent)]/25 hover:bg-white/[0.04]"
                   >
-                    <ChevronRight className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                    <span>{point}</span>
+                    <div className="flex items-center gap-3">
+                      <ChevronRight className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+                      <span>{point}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -463,7 +557,7 @@ function DifferenceSection() {
   ];
 
   return (
-    <section id="difference" className="border-y border-white/6 bg-black/20 py-24 sm:py-32">
+    <section id="difference" className="section-cinematic py-24 sm:py-32">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">Why BALLANTIR Is Different</p>
@@ -481,9 +575,9 @@ function DifferenceSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.1, duration: 0.55 }}
-              className="panel rounded-[1.75rem] p-6"
+              className="panel feature-card rounded-[1.75rem] p-6"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--accent)]/12 text-[var(--accent)]">
+              <div className="icon-chip">
                 <card.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-6 text-2xl font-semibold">{card.title}</h3>
@@ -500,9 +594,9 @@ function VisionSection() {
   return (
     <section id="vision" className="py-24 sm:py-32">
       <div className="container-shell">
-        <div className="panel overflow-hidden rounded-[2.25rem] p-8 sm:p-10">
+        <div className="panel panel-cinematic overflow-hidden rounded-[2.25rem] p-8 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[var(--accent)]/25 bg-[var(--accent)]/10">
+            <div className="icon-chip flex h-20 w-20 items-center justify-center rounded-full">
               <Globe className="h-9 w-9 text-[var(--accent)]" />
             </div>
             <div>
@@ -525,19 +619,19 @@ function CtaSection() {
   return (
     <section id="cta" className="pb-24 pt-8 sm:pb-32">
       <div className="container-shell">
-        <div className="panel rounded-[2.5rem] px-6 py-10 text-center sm:px-10 sm:py-14">
+        <div className="panel panel-cinematic rounded-[2.5rem] px-6 py-10 text-center sm:px-10 sm:py-14">
           <p className="section-eyebrow">Early Access And Investor Conversations</p>
           <h2 className="section-title mt-4 font-semibold">Join the first wave of strategic partners.</h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/58">
             Meet the platform early, shape the product direction, and start the investor conversation while the system is still selective.
           </p>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-            <a href="mailto:invest@ballantir.ai" className={cn(buttonVariants({ size: "lg" }))}>
+            <a href="mailto:invest@ballantir.ai" className={cn(buttonVariants({ size: "lg" }), "button-tech")}>
               Request Early Access
             </a>
             <a
               href="mailto:partners@ballantir.ai"
-              className={cn(buttonVariants({ size: "lg", variant: "secondary" }))}
+              className={cn(buttonVariants({ size: "lg", variant: "secondary" }), "button-tech-subtle")}
             >
               Start Investor Conversation
             </a>
