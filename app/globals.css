@@ -2,7 +2,7 @@
 
 :root {
   --background: #050505;
-  --background-secondary: #0f172a;
+  --background-secondary: #0c1017;
   --surface: rgba(17, 17, 17, 0.78);
   --surface-strong: rgba(10, 10, 10, 0.94);
   --foreground: #ffffff;
@@ -26,9 +26,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(200, 155, 60, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 15%, rgba(184, 115, 51, 0.08), transparent 24%),
-    linear-gradient(180deg, #050505 0%, #0a0e17 46%, #050505 100%);
+    radial-gradient(circle at top, rgba(200, 155, 60, 0.08), transparent 26%),
+    radial-gradient(circle at 85% 15%, rgba(184, 115, 51, 0.05), transparent 18%),
+    linear-gradient(180deg, #040404 0%, #091019 46%, #040404 100%);
   color: var(--foreground);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -72,17 +72,17 @@ img {
 
 .panel {
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
   backdrop-filter: blur(18px);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
 }
 
 .hero-shell {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(5, 5, 5, 0.84), rgba(5, 5, 5, 0.45)),
-    radial-gradient(circle at 20% 20%, rgba(200, 155, 60, 0.18), transparent 24%),
-    radial-gradient(circle at 85% 18%, rgba(72, 99, 153, 0.18), transparent 22%);
+    linear-gradient(180deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.54)),
+    radial-gradient(circle at 20% 20%, rgba(200, 155, 60, 0.12), transparent 22%),
+    radial-gradient(circle at 85% 18%, rgba(72, 99, 153, 0.1), transparent 18%);
 }
 
 .hero-overlay-grid {
@@ -162,7 +162,9 @@ img {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+    linear-gradient(90deg, rgba(200, 155, 60, 0.05), transparent 55%);
   border-radius: 1.25rem;
   padding: 1rem;
 }
@@ -179,9 +181,17 @@ img {
   animation: metricPulse 4.4s ease-in-out infinite;
 }
 
+.intelligence-ribbon {
+  background: #000;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
 .ticker-shell {
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .ticker-shell::before,
@@ -197,30 +207,38 @@ img {
 
 .ticker-shell::before {
   left: 0;
-  background: linear-gradient(90deg, rgba(5, 5, 5, 0.95), transparent);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.98), transparent);
 }
 
 .ticker-shell::after {
   right: 0;
-  background: linear-gradient(270deg, rgba(5, 5, 5, 0.95), transparent);
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.98), transparent);
 }
 
 .ticker-track {
   display: flex;
   gap: 1rem;
   width: max-content;
-  padding: 0 1rem;
+  padding: 0.35rem 1rem;
 }
 
 .ticker-chip {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  min-width: 18rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
-  padding: 0.85rem 1.2rem;
+  min-width: 26rem;
+  border-right: 1px solid rgba(200, 155, 60, 0.18);
+  padding-right: 1rem;
+}
+
+.ticker-kicker {
+  flex: 0 0 auto;
+  color: rgba(200, 155, 60, 0.72);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .ticker-value {
@@ -231,9 +249,21 @@ img {
 }
 
 .ticker-label {
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.92rem;
-  line-height: 1.3;
+  color: #c89b3c;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.category-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
+    linear-gradient(125deg, rgba(200, 155, 60, 0.05), transparent 36%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 28px 90px rgba(0, 0, 0, 0.36);
 }
 
 .section-divider {
@@ -461,17 +491,12 @@ img {
   }
 
   .ticker-chip {
-    min-width: 14rem;
+    min-width: 20rem;
     gap: 0.75rem;
-    padding: 0.75rem 1rem;
-  }
-
-  .ticker-value {
-    font-size: 1.1rem;
   }
 
   .ticker-label {
-    font-size: 0.78rem;
+    font-size: 0.68rem;
   }
 
   .section-card {
@@ -521,7 +546,11 @@ img {
   }
 
   .ticker-chip {
-    min-width: 12.5rem;
+    min-width: 17rem;
+  }
+
+  .ticker-kicker {
+    display: none;
   }
 
   .video-panel {

@@ -1,58 +1,64 @@
 export const landingPageContent = {
   tagline: "AI-Driven Sports Intelligence Platform",
   hero:
-    "An AI-driven basketball intelligence platform built to turn film, search, microphone routing, structured inputs, and context into faster, better decisions for players, teams, and decision-makers.",
+    "A basketball intelligence platform designed to unify film, analytics, scouting context, and natural-language workflow into one disciplined operating system for better decisions.",
   problem:
-    "Basketball decisions are still slowed down by fragmented tools, endless tape, scattered data, and too much guesswork. BALLANTIR is designed to consolidate the signal into one high-conviction operating layer.",
+    "Basketball decisions still live across fragmented workflows. Film sits in one place, scouting notes in another, analytics in another, and decision-makers are left to reconcile the picture themselves.",
   solution:
-    "BALLANTIR Basketball brings everything into one intelligence system where film becomes the truth layer, search or microphone becomes the routing layer, and command modules turn inputs into clear decisions.",
+    "BALLANTIR Basketball consolidates those layers into one intelligence system, where film becomes the truth layer, search and voice become the routing layer, and structured outputs become the decision layer.",
   vision:
-    "Basketball is the first build. BALLANTIR is being designed as the foundation for a multi-sport intelligence ecosystem that can scale from player development and roster construction into a broader sports intelligence platform.",
-  metrics: [
-    { value: "4h to 90s", label: "Scout report time" },
-    { value: "10M+", label: "Film minutes indexed" },
-    { value: "450+", label: "Decision signals tracked" },
-    { value: "NBA-grade", label: "Operational standard" },
+    "Basketball is the first vertical. The long-term opportunity is a multi-sport intelligence ecosystem where decision support, evidence layers, and workflow infrastructure can extend across adjacent sports and operating contexts.",
+  strengths: [
+    { title: "Evidence-led", description: "Anchored in what happened on court, not just abstract dashboards." },
+    { title: "Workflow-native", description: "Built around how teams, players, and operators actually ask questions." },
+    { title: "Platform-minded", description: "Designed as infrastructure that can expand beyond a single basketball use case." },
+  ],
+  intelligenceRibbon: [
+    "ALERT: Utah guard Lonnie White breakout performance detected",
+    "SIGNAL: Defensive matchup advantage flagged",
+    "UPDATE: Lineup efficiency shift detected",
+    "FLAG: Opportunity window for stretch forwards",
+    "ALERT: High-impact performance signal triggered",
   ],
   featureCards: [
     {
       title: "Film Intelligence",
-      description: "Game film becomes the truth layer for decision-making.",
+      description: "Game film becomes the evidence layer for evaluations, role analysis, and tactical interpretation.",
     },
     {
       title: "Command Search",
-      description: "Search or voice routes questions directly into the intelligence system.",
+      description: "Search and voice route questions directly into the system without forcing users through fragmented tooling.",
     },
     {
       title: "Decision Modules",
-      description: "Structured outputs generate insights for players, teams, and investors.",
+      description: "Structured outputs turn raw signal into decision support for roster construction, development, and fit.",
     },
   ],
   decisionFeed: [
     {
       label: "Signal 01",
       title: "Film becomes the source of truth",
-      badge: "truth layer",
-      copy: "Possessions, tendencies, and role context are extracted from video instead of being manually stitched together from disconnected tools.",
+      badge: "evidence",
+      copy: "Possessions, tendencies, and role context begin with film so the platform stays grounded in what actually happened.",
     },
     {
       label: "Signal 02",
       title: "Questions route through one interface",
-      badge: "routing layer",
-      copy: "Search and microphone input move the user from question to answer without needing multiple dashboards or custom query fluency.",
+      badge: "routing",
+      copy: "Search and microphone input move users from question to answer without requiring custom query language or multiple dashboards.",
     },
     {
       label: "Signal 03",
       title: "Outputs are decision-ready",
-      badge: "command layer",
-      copy: "The product is built to support next-best decisions across roster construction, player development, opportunity, and strategic fit.",
+      badge: "decision",
+      copy: "The platform is designed to support next-best decisions across roster construction, player development, opportunity, and strategic fit.",
     },
   ],
   commandOutput: [
     {
       title: "Role fit by lineup context",
       tag: "teams",
-      copy: "Surface players whose spacing, defensive coverage range, and decision speed complement a ball-dominant creator.",
+      copy: "Surface players whose spacing, coverage range, and decision tempo complement a ball-dominant creator.",
     },
     {
       title: "Opportunity and value readout",
@@ -64,7 +70,7 @@ export const landingPageContent = {
     {
       kicker: "Intelligence for Players",
       title: "Know identity, pathway, opportunity, fit, and value.",
-      copy: "Players and agents use BALLANTIR to understand how a player is perceived, where their role compounds, and which environments increase long-term leverage.",
+      copy: "Players and agents use BALLANTIR to understand how a player is perceived, where their role compounds, and which environments deepen long-term leverage.",
       points: [
         "Role and identity mapping",
         "Targeted development pathways",
@@ -75,7 +81,7 @@ export const landingPageContent = {
     {
       kicker: "Intelligence for Teams",
       title: "See roster construction and next-best decisions faster.",
-      copy: "Teams evaluate roster construction, lineup intelligence, scouting targets, and actionable next steps from one operating layer rather than scattered tooling.",
+      copy: "Teams evaluate roster construction, lineup intelligence, scouting targets, and next-best actions from one operating layer rather than scattered tooling.",
       points: [
         "Roster construction analysis",
         "Lineup intelligence",
@@ -87,15 +93,25 @@ export const landingPageContent = {
   difference: [
     {
       title: "Not a dashboard. A decision platform.",
-      copy: "BALLANTIR is built to reduce noise and return a clear answer with context, rather than asking users to navigate tools and interpret charts on their own.",
+      copy: "BALLANTIR is built to reduce noise and return a clear answer with context, rather than asking operators to reconcile disconnected tools themselves.",
     },
     {
-      title: "Film is the truth layer.",
-      copy: "The system is anchored in what happened on court, turning video into the primary evidence source for evaluations, planning, and strategic conviction.",
+      title: "Film is the evidence layer.",
+      copy: "The system is anchored in what happened on court, turning video into the primary source for evaluation, planning, and strategic conviction.",
     },
     {
-      title: "Speed compounds across the workflow.",
-      copy: "When film, search, voice, and output modules live in one product, time-to-decision compresses from hours to seconds without sacrificing clarity.",
+      title: "Workflow compounding matters.",
+      copy: "When film, search, voice, and outputs live in one product, decision quality improves because context is preserved through the full workflow.",
     },
   ],
+  categoryDefining: {
+    title: "Why BALLANTIR Becomes the Bloomberg of Basketball",
+    description:
+      "The opportunity is larger than a point product. Basketball decisions are still fragmented across film rooms, analytics suites, scouting workflows, and disconnected communication loops. BALLANTIR unifies those layers into one intelligence system, where the enduring value is not a single feature but decision infrastructure itself.",
+    points: [
+      "Fragmented basketball workflows create institutional drag across evaluation and execution.",
+      "A unified intelligence layer makes decision-making the product, not just analytics or video access.",
+      "Basketball is the first vertical in a broader multi-sport intelligence ecosystem.",
+    ],
+  },
 } as const;

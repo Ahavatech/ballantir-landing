@@ -24,7 +24,10 @@ import { landingPageContent } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const icons = [Play, Search, BrainCircuit];
-const tickerMetrics = [...landingPageContent.metrics, ...landingPageContent.metrics];
+const intelligenceSignals = [
+  ...landingPageContent.intelligenceRibbon,
+  ...landingPageContent.intelligenceRibbon,
+];
 
 export function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,9 +42,7 @@ export function LandingPage() {
 
       <main>
         <HeroSection />
-        <MetricsSection />
-        <SectionDivider label="Signal Architecture" />
-        <VideoSection />
+        <IntelligenceRibbon />
         <NarrativeSection
           id="problem"
           eyebrow="The Problem"
@@ -50,6 +51,10 @@ export function LandingPage() {
         />
         <SectionDivider label="One Intelligence System" />
         <SolutionSection />
+        <SectionDivider label="Signal Architecture" />
+        <VideoSection />
+        <SectionDivider label="Platform Company" />
+        <CategoryDefiningSection />
         <AudienceSection />
         <SectionDivider label="Why It Compounds" />
         <DifferenceSection />
@@ -91,8 +96,8 @@ function SiteHeader({
 }) {
   const navItems = [
     { href: "#solution", label: "Platform" },
+    { href: "#category-defining", label: "Thesis" },
     { href: "#audiences", label: "Stakeholders" },
-    { href: "#difference", label: "Difference" },
     { href: "#vision", label: "Vision" },
   ];
 
@@ -225,7 +230,7 @@ function HeroSection() {
           <h1 className="section-title hero-title max-w-5xl font-semibold text-white">
             BALLANTIR Basketball
             <span className="hero-title-accent block">
-              The Future of AI-Driven Sports Intelligence
+              The Bloomberg Terminal for Basketball Intelligence
             </span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:mt-7 sm:text-lg sm:leading-8 lg:text-xl">
@@ -248,19 +253,19 @@ function HeroSection() {
           </div>
 
           <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
-            {landingPageContent.metrics.slice(0, 3).map((metric, index) => (
+            {landingPageContent.strengths.map((strength, index) => (
               <motion.div
-                key={metric.label}
+                key={strength.title}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 + index * 0.1, duration: 0.55 }}
                 className="hero-metric-card"
               >
                 <div className="signal-dot" />
-                <p className="metric-flash text-2xl font-semibold text-[var(--accent)]">{metric.value}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/38">
-                  {metric.label}
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent)]">
+                  {strength.title}
                 </p>
+                <p className="mt-3 text-sm leading-6 text-white/58">{strength.description}</p>
               </motion.div>
             ))}
           </div>
@@ -315,20 +320,23 @@ function HeroSection() {
               ))}
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {landingPageContent.metrics.slice(0, 3).map((metric) => (
-                <div
-                  key={metric.label}
-                  className="metric-ticker rounded-2xl border border-white/8 bg-black/25 p-4"
-                >
-                  <p className="metric-flash text-2xl font-semibold text-[var(--accent)]">
-                    {metric.value}
+            <div className="mt-6 rounded-[1.25rem] border border-white/8 bg-black/25 p-4 sm:p-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/38">
+                    Institutional framing
                   </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/35">
-                    {metric.label}
+                  <p className="mt-2 text-lg font-medium text-white sm:text-xl">
+                    One interface for film, scouting context, and decision support.
                   </p>
                 </div>
-              ))}
+                <span className="inline-flex w-fit rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">
+                  terminal-grade workflow
+                </span>
+              </div>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/56">
+                The goal is not to display more data. It is to create a disciplined intelligence environment where evidence, routing, and output live together.
+              </p>
             </div>
           </div>
         </motion.div>
@@ -337,19 +345,19 @@ function HeroSection() {
   );
 }
 
-function MetricsSection() {
+function IntelligenceRibbon() {
   return (
-    <section className="border-y border-white/6 bg-black/30 py-6">
+    <section className="intelligence-ribbon border-y border-[rgba(200,155,60,0.18)]">
       <div className="ticker-shell">
         <motion.div
           className="ticker-track"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 24, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 32, ease: "linear" }}
         >
-          {tickerMetrics.map((metric, index) => (
-            <div key={`${metric.label}-${index}`} className="ticker-chip">
-              <span className="ticker-value">{metric.value}</span>
-              <span className="ticker-label">{metric.label}</span>
+          {intelligenceSignals.map((signal, index) => (
+            <div key={`${signal}-${index}`} className="ticker-chip">
+              <span className="ticker-kicker">live intelligence</span>
+              <span className="ticker-label">{signal}</span>
             </div>
           ))}
         </motion.div>
@@ -388,7 +396,7 @@ function VideoSection() {
           transition={{ duration: 0.7 }}
           className="panel panel-cinematic mt-10 overflow-hidden rounded-[1.5rem] p-3 sm:mt-12 sm:rounded-[2rem] sm:p-4"
         >
-          <div className="video-panel relative aspect-[4/5] min-h-[24rem] rounded-[1.1rem] border border-[var(--accent)]/18 sm:aspect-video sm:min-h-0 sm:rounded-[1.5rem]">
+          <div className="video-panel relative aspect-video w-full rounded-[1.1rem] border border-[var(--accent)]/18 sm:rounded-[1.5rem]">
             <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 sm:right-6 sm:top-6 sm:px-3 sm:text-[10px] sm:tracking-[0.24em]">
               Cloudinary-ready
             </div>
@@ -404,6 +412,55 @@ function VideoSection() {
                 How BALLANTIR
                 changes the speed and quality of decision-making for teams, players, and investors.
               </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function CategoryDefiningSection() {
+  return (
+    <section id="category-defining" className="py-20 sm:py-32">
+      <div className="container-shell">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.65 }}
+          className="panel category-panel rounded-[1.75rem] p-5 sm:rounded-[2.25rem] sm:p-8 lg:p-10"
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="section-eyebrow">Category-Defining Company</p>
+              <h2 className="section-title mt-4 text-[clamp(2.3rem,5vw,4.4rem)] font-semibold">
+                {landingPageContent.categoryDefining.title}
+              </h2>
+            </div>
+            <div>
+              <p className="text-base leading-7 text-white/62 sm:text-lg sm:leading-8">
+                {landingPageContent.categoryDefining.description}
+              </p>
+              <div className="mt-8 grid gap-3">
+                {landingPageContent.categoryDefining.points.map((point, index) => (
+                  <motion.article
+                    key={point}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{ delay: index * 0.08, duration: 0.5 }}
+                    className="rounded-[1.25rem] border border-white/8 bg-black/25 px-4 py-4 sm:px-5"
+                  >
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">
+                      Thesis 0{index + 1}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-white/66 sm:text-base sm:leading-7">
+                      {point}
+                    </p>
+                  </motion.article>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -516,7 +573,7 @@ function AudienceSection() {
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Two Operating Views</p>
-          <h2 className="section-title mt-4 font-semibold">Intelligence for players and teams.</h2>
+          <h2 className="section-title mt-4 font-semibold">The same system, tuned for different decision-makers.</h2>
         </div>
 
         <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-6 lg:grid-cols-2">
