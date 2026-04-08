@@ -7,13 +7,16 @@ import {
   ArrowRight,
   BrainCircuit,
   ChevronRight,
+  Cpu,
   Globe,
   Menu,
   Mic,
+  Radar,
   Play,
   Search,
   ShieldCheck,
   Target,
+  Video,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -28,6 +31,40 @@ const intelligenceSignals = [
   ...landingPageContent.intelligenceRibbon,
   ...landingPageContent.intelligenceRibbon,
 ];
+const pipelineNodes = [
+  {
+    id: "video_node",
+    label: "Film / Video Layer",
+    description: "The truth layer of the platform - raw basketball film and input data.",
+    tooltip: "Film / Video: Truth layer",
+    icon: Video,
+    badge: "truth layer",
+  },
+  {
+    id: "ai_node",
+    label: "AI / Bot Logic",
+    description: "Processes film, structured inputs, and context into actionable basketball intelligence.",
+    tooltip: "AI / Bot Logic: Interpretation layer",
+    icon: BrainCircuit,
+    badge: "interpretation",
+  },
+  {
+    id: "mic_node",
+    label: "Microphone / Search Routing",
+    description: "Natural-language routing for voice and search - the signature command entry point.",
+    tooltip: "Microphone / Search: Routing layer",
+    icon: null,
+    badge: "routing layer",
+  },
+  {
+    id: "output_node",
+    label: "Intelligence Output",
+    description: "Decision-grade outputs - insights, rankings, fit, opportunities, and actionable reports.",
+    tooltip: "Intelligence Output: Actionable insights",
+    icon: Radar,
+    badge: "decision layer",
+  },
+] as const;
 
 export function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +80,7 @@ export function LandingPage() {
       <main>
         <HeroSection />
         <IntelligenceRibbon />
+        <SystemPipelineSection />
         <NarrativeSection
           id="problem"
           eyebrow="The Problem"
@@ -372,6 +410,219 @@ function SectionDivider({ label }: { label: string }) {
       <div className="section-divider">
         <span>{label}</span>
       </div>
+    </div>
+  );
+}
+
+function SystemPipelineSection() {
+  return (
+    <section id="ballantir-intelligence-pipeline" className="pipeline-section py-16 sm:py-20 lg:py-24">
+      <div className="container-shell">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7 }}
+          className="panel panel-cinematic pipeline-shell overflow-hidden rounded-[1.75rem] px-5 py-6 sm:px-7 sm:py-8 lg:px-10 lg:py-10"
+        >
+          <div className="pipeline-shell-glow" />
+
+          <div className="relative z-10">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="section-eyebrow">Core BALLANTIR Intelligence Pipeline</p>
+                <h2 className="section-title mt-4 text-[clamp(2.3rem,5.2vw,4.8rem)] font-semibold">
+                  Video + bot logic + routing = sports intelligence
+                </h2>
+                <p className="mt-5 max-w-2xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+                  A compact visual equation for investors, players, and operators: evidence enters,
+                  interpretation compounds, routing sharpens the query, and the output becomes
+                  decision-grade.
+                </p>
+              </div>
+
+              <div className="pipeline-caption-chip self-start lg:self-auto">
+                <Cpu className="h-4 w-4" />
+                <span>The intelligence layer of basketball</span>
+              </div>
+            </div>
+
+            <div className="pipeline-layout relative mt-10 lg:mt-12">
+              <DesktopPipelineConnectors />
+              <TabletPipelineConnectors />
+
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                {pipelineNodes.map((node, index) => (
+                  <PipelineNode
+                    key={node.id}
+                    node={node}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--accent)]/82">
+                from film. to logic. to leverage.
+              </p>
+              <p className="max-w-2xl text-sm leading-6 text-white/42">
+                Hover each node for layer framing. The microphone remains the signature command
+                surface for routing questions through the system.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function PipelineNode({
+  node,
+  index,
+}: {
+  node: (typeof pipelineNodes)[number];
+  index: number;
+}) {
+  const Icon = node.icon;
+
+  return (
+    <div className="flex flex-col md:contents xl:block">
+      {index > 0 ? (
+        <motion.div
+          initial={{ opacity: 0, scaleY: 0 }}
+          whileInView={{ opacity: 1, scaleY: 1 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ delay: 0.15 + index * 0.12, duration: 0.45 }}
+          className="pipeline-mobile-connector origin-top xl:hidden"
+          aria-hidden="true"
+        >
+          <div className="pipeline-flow-dot pipeline-flow-dot-mobile" />
+        </motion.div>
+      ) : null}
+
+      <motion.article
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ delay: 0.2 + index * 0.14, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="pipeline-node feature-card relative min-h-[18rem] rounded-[1.5rem] p-5 sm:min-h-[19rem] sm:p-6"
+        title={node.tooltip}
+      >
+        <div className="pipeline-node-top">
+          <span className="pipeline-node-index">0{index + 1}</span>
+          <span className="pipeline-node-badge">{node.badge}</span>
+        </div>
+
+        <div className="mt-5">
+          {node.id === "mic_node" ? (
+            <div className="pipeline-mic-wrap">
+              <div className="pipeline-mic-ring" />
+              <div className="pipeline-mic-core">
+                <Image
+                  src="/mic.png"
+                  alt="BALLANTIR microphone routing interface"
+                  width={74}
+                  height={74}
+                  className="h-[74px] w-[74px] object-contain"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="pipeline-icon-wrap">
+              {Icon ? <Icon className="h-8 w-8" /> : null}
+            </div>
+          )}
+        </div>
+
+        <h3 className="mt-6 text-xl font-semibold text-white sm:text-2xl">{node.label}</h3>
+        <p className="mt-3 text-sm leading-6 text-white/58 sm:text-[15px] sm:leading-7">
+          {node.description}
+        </p>
+
+        {node.id === "output_node" ? (
+          <div className="pipeline-output-panel mt-6">
+            <div className="pipeline-output-grid">
+              <div>
+                <span>player index</span>
+                <strong>97.4</strong>
+              </div>
+              <div>
+                <span>lineup fit</span>
+                <strong>+11.3</strong>
+              </div>
+              <div>
+                <span>opportunity</span>
+                <strong>A+</strong>
+              </div>
+            </div>
+            <div className="pipeline-output-footer">
+              <span>confidence</span>
+              <span>92%</span>
+            </div>
+          </div>
+        ) : (
+          <div className="pipeline-node-footer mt-6">
+            <span>{node.tooltip}</span>
+          </div>
+        )}
+
+        <div className="pipeline-tooltip">{node.tooltip}</div>
+      </motion.article>
+    </div>
+  );
+}
+
+function DesktopPipelineConnectors() {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 hidden xl:block" aria-hidden="true">
+      {[0, 1, 2].map((index) => (
+        <motion.div
+          key={`desktop-connector-${index}`}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ delay: 0.45 + index * 0.18, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className={`pipeline-connector-desktop pipeline-connector-desktop-${index + 1}`}
+        >
+          <div className="pipeline-flow-dot" />
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function TabletPipelineConnectors() {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 hidden md:block xl:hidden" aria-hidden="true">
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true, amount: 0.45 }}
+        transition={{ delay: 0.35, duration: 0.5 }}
+        className="pipeline-connector-tablet pipeline-connector-tablet-top"
+      >
+        <div className="pipeline-flow-dot" />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true, amount: 0.45 }}
+        transition={{ delay: 0.58, duration: 0.52 }}
+        className="pipeline-connector-tablet pipeline-connector-tablet-diagonal"
+      >
+        <div className="pipeline-flow-dot" />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true, amount: 0.45 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="pipeline-connector-tablet pipeline-connector-tablet-bottom"
+      >
+        <div className="pipeline-flow-dot" />
+      </motion.div>
     </div>
   );
 }
