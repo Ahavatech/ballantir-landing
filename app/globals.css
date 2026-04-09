@@ -51,7 +51,7 @@ img {
 
 .container-shell {
   margin: 0 auto;
-  width: min(1200px, calc(100% - 2rem));
+  width: min(1200px, calc(100% - 3rem));
 }
 
 .section-eyebrow {
@@ -64,7 +64,7 @@ img {
 }
 
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-size: clamp(1.9rem, 6vw, 4.75rem);
   line-height: 0.98;
   letter-spacing: -0.04em;
   text-wrap: balance;
@@ -124,8 +124,10 @@ img {
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.7rem;
+  overflow: hidden;
+  max-width: 100%;
   border: 1px solid rgba(200, 155, 60, 0.28);
   background: linear-gradient(180deg, rgba(200, 155, 60, 0.12), rgba(255, 255, 255, 0.04));
   border-radius: 999px;
@@ -141,7 +143,7 @@ img {
 
 .hero-title {
   margin-top: 1.5rem;
-  font-size: clamp(3rem, 7vw, 5.9rem);
+  font-size: clamp(2.2rem, 8vw, 5.9rem);
   line-height: 0.93;
   letter-spacing: -0.05em;
 }
@@ -704,21 +706,21 @@ img {
 }
 
 .pipeline-connector-desktop {
-  top: 9.2rem;
+  top: 7rem;
   height: 2px;
-  width: calc(25% - 0.9rem);
+  width: calc(25% - 5.5rem);
 }
 
 .pipeline-connector-desktop-1 {
-  left: calc(12.5% + 4.35rem);
+  left: calc(12.5% + 2.75rem);
 }
 
 .pipeline-connector-desktop-2 {
-  left: calc(37.5% + 3.7rem);
+  left: calc(37.5% + 2.75rem);
 }
 
 .pipeline-connector-desktop-3 {
-  left: calc(62.5% + 3.2rem);
+  left: calc(62.5% + 2.75rem);
 }
 
 .pipeline-connector-tablet {
@@ -726,9 +728,9 @@ img {
 }
 
 .pipeline-connector-tablet-top {
-  top: 9rem;
-  left: calc(25% + 3rem);
-  width: calc(50% - 6rem);
+  top: 7rem;
+  left: calc(25% + 2.75rem);
+  width: calc(50% - 5.5rem);
 }
 
 .pipeline-connector-tablet-diagonal {
@@ -740,9 +742,9 @@ img {
 }
 
 .pipeline-connector-tablet-bottom {
-  bottom: 9rem;
-  left: calc(25% + 3rem);
-  width: calc(50% - 6rem);
+  bottom: 7rem;
+  left: calc(25% + 2.75rem);
+  width: calc(50% - 5.5rem);
 }
 
 @keyframes sweep {
@@ -863,7 +865,7 @@ img {
   }
 
   .hero-title {
-    font-size: clamp(2.7rem, 12vw, 4.3rem);
+    font-size: clamp(2rem, 10vw, 4.3rem);
     line-height: 0.96;
   }
 
@@ -921,7 +923,7 @@ img {
   }
 
   .pipeline-connector-tablet-top {
-    top: 8.8rem;
+    top: 6.5rem;
     left: calc(25% + 2.4rem);
     width: calc(50% - 4.8rem);
   }
@@ -932,7 +934,7 @@ img {
   }
 
   .pipeline-connector-tablet-bottom {
-    bottom: 8.8rem;
+    bottom: 6.5rem;
     left: calc(25% + 2.4rem);
     width: calc(50% - 4.8rem);
   }
@@ -940,7 +942,7 @@ img {
 
 @media (max-width: 480px) {
   .container-shell {
-    width: min(1200px, calc(100% - 1.25rem));
+    width: min(1200px, calc(100% - 3rem));
   }
 
   .section-eyebrow {

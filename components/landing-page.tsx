@@ -246,9 +246,9 @@ function HeroSection() {
           transition={{ delay: 0.05, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          <div className="hero-badge max-w-full">
-            <Sparkle className="h-4 w-4 text-[var(--accent)]" />
-            <span>Investor-grade intelligence platform</span>
+          <div className="hero-badge">
+            <Sparkle className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+            <span className="min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">Investor-grade intelligence platform</span>
           </div>
 
           <div className="mt-6 flex items-center gap-3 sm:mt-7 sm:gap-4">
@@ -290,7 +290,7 @@ function HeroSection() {
             </a>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-4">
             {landingPageContent.strengths.map((strength, index) => (
               <motion.div
                 key={strength.title}
@@ -431,7 +431,7 @@ function SystemPipelineSection() {
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-3xl">
                 <p className="section-eyebrow">Core BALLANTIR Intelligence Pipeline</p>
-                <h2 className="section-title mt-4 text-[clamp(2.3rem,5.2vw,4.8rem)] font-semibold">
+                <h2 className="section-title mt-4 text-[clamp(1.9rem,5.2vw,4.8rem)] font-semibold">
                   Video + bot logic + routing = sports intelligence
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
@@ -629,7 +629,7 @@ function TabletPipelineConnectors() {
 
 function VideoSection() {
   return (
-    <section id="vision-video" className="section-cinematic py-20 sm:py-32">
+    <section id="vision-video" className="section-cinematic py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Platform Vision</p>
@@ -651,7 +651,7 @@ function VideoSection() {
             <div className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/45 sm:right-6 sm:top-6 sm:px-3 sm:text-[10px] sm:tracking-[0.24em]">
               Cloudinary-ready
             </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pb-6 pt-14 text-center sm:px-6 sm:pb-0 sm:pt-0">
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-12 text-center sm:px-6 sm:py-6">
               <div className="video-play-ring flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 sm:h-20 sm:w-20">
                 <Play className="h-6 w-6 text-[var(--accent)] sm:h-8 sm:w-8" />
               </div>
@@ -673,7 +673,7 @@ function VideoSection() {
 
 function CategoryDefiningSection() {
   return (
-    <section id="category-defining" className="py-20 sm:py-32">
+    <section id="category-defining" className="py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -682,10 +682,10 @@ function CategoryDefiningSection() {
           transition={{ duration: 0.65 }}
           className="panel category-panel rounded-[1.75rem] p-5 sm:rounded-[2.25rem] sm:p-8 lg:p-10"
         >
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="section-eyebrow">Category-Defining Company</p>
-              <h2 className="section-title mt-4 text-[clamp(2.3rem,5vw,4.4rem)] font-semibold">
+              <h2 className="section-title mt-4 text-[clamp(1.9rem,5vw,4.4rem)] font-semibold">
                 {landingPageContent.categoryDefining.title}
               </h2>
             </div>
@@ -732,7 +732,7 @@ function NarrativeSection({
   description: string;
 }) {
   return (
-    <section id={id} className="py-20 sm:py-32">
+    <section id={id} className="py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="section-card mx-auto max-w-4xl text-center">
           <p className="section-eyebrow">{eyebrow}</p>
@@ -746,7 +746,7 @@ function NarrativeSection({
 
 function SolutionSection() {
   return (
-    <section id="solution" className="section-cinematic py-20 sm:py-32">
+    <section id="solution" className="section-cinematic py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">One Intelligence System</p>
@@ -780,7 +780,7 @@ function SolutionSection() {
         </div>
 
         <div className="panel panel-cinematic mt-8 rounded-[1.5rem] p-5 sm:mt-10 sm:rounded-[2rem] sm:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
               <p className="section-eyebrow">Command Example</p>
               <h3 className="mt-4 text-2xl font-semibold sm:text-3xl">Ask basketball in plain language.</h3>
@@ -820,7 +820,7 @@ function SolutionSection() {
 
 function AudienceSection() {
   return (
-    <section id="audiences" className="py-20 sm:py-32">
+    <section id="audiences" className="py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-eyebrow">Two Operating Views</p>
@@ -869,7 +869,7 @@ function DifferenceSection() {
   ];
 
   return (
-    <section id="difference" className="section-cinematic py-20 sm:py-32">
+    <section id="difference" className="section-cinematic py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="max-w-3xl">
           <p className="section-eyebrow">Why BALLANTIR Is Different</p>
@@ -904,23 +904,21 @@ function DifferenceSection() {
 
 function VisionSection() {
   return (
-    <section id="vision" className="py-20 sm:py-32">
+    <section id="vision" className="py-14 sm:py-20 lg:py-28">
       <div className="container-shell">
         <div className="panel panel-cinematic overflow-hidden rounded-[1.75rem] p-5 sm:rounded-[2.25rem] sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div className="icon-chip flex h-16 w-16 items-center justify-center rounded-full sm:h-20 sm:w-20">
-              <Globe className="h-7 w-7 text-[var(--accent)] sm:h-9 sm:w-9" />
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="icon-chip shrink-0 flex h-12 w-12 items-center justify-center rounded-xl sm:h-14 sm:w-14 sm:rounded-2xl">
+              <Globe className="h-5 w-5 text-[var(--accent)] sm:h-6 sm:w-6" />
             </div>
-            <div>
-              <p className="section-eyebrow">The Bigger Vision</p>
-              <h2 className="section-title mt-4 font-semibold">
-                Basketball is the first build in a multi-sport intelligence system.
-              </h2>
-              <p className="mt-6 max-w-3xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
-                {landingPageContent.vision}
-              </p>
-            </div>
+            <p className="section-eyebrow">The Bigger Vision</p>
           </div>
+          <h2 className="section-title mt-6 font-semibold">
+            Basketball is the first build in a multi-sport intelligence system.
+          </h2>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
+            {landingPageContent.vision}
+          </p>
         </div>
       </div>
     </section>
@@ -929,7 +927,7 @@ function VisionSection() {
 
 function CtaSection() {
   return (
-    <section id="cta" className="pb-20 pt-6 sm:pb-32 sm:pt-8">
+    <section id="cta" className="pb-14 pt-6 sm:pb-24 sm:pt-8 lg:pb-28">
       <div className="container-shell">
         <div className="panel panel-cinematic rounded-[1.75rem] px-5 py-8 text-center sm:rounded-[2.5rem] sm:px-10 sm:py-14">
           <p className="section-eyebrow">Early Access And Investor Conversations</p>
