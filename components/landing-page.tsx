@@ -43,7 +43,7 @@ const pipelineNodes = [
   {
     id: "ai_node",
     label: "AI / Bot Logic",
-    description: "Processes film, structured inputs, and context into actionable basketball intelligence.",
+    description: "Computer vision and machine-learning models analyze film, context, and structured inputs to generate basketball intelligence signals.",
     tooltip: "AI / Bot Logic: Interpretation layer",
     icon: BrainCircuit,
     badge: "interpretation",
@@ -51,7 +51,7 @@ const pipelineNodes = [
   {
     id: "mic_node",
     label: "Microphone / Search Routing",
-    description: "Natural-language routing for voice and search - the signature command entry point.",
+    description: "Natural-language search and voice commands route questions through the intelligence engine.",
     tooltip: "Microphone / Search: Routing layer",
     icon: null,
     badge: "routing layer",
@@ -59,7 +59,7 @@ const pipelineNodes = [
   {
     id: "output_node",
     label: "Intelligence Output",
-    description: "Decision-grade outputs - insights, rankings, fit, opportunities, and actionable reports.",
+    description: "Decision-grade outputs including player evaluation, lineup fit, opportunity signals, and structured intelligence reports.",
     tooltip: "Intelligence Output: Actionable insights",
     icon: Radar,
     badge: "decision layer",
@@ -365,7 +365,7 @@ function HeroSection() {
                     Institutional framing
                   </p>
                   <p className="mt-2 text-lg font-medium text-white sm:text-xl">
-                    One interface for film, scouting context, and decision support.
+                    One interface for film analysis, scouting context, and basketball decision intelligence.
                   </p>
                 </div>
                 <span className="inline-flex w-fit rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)]">
@@ -373,7 +373,8 @@ function HeroSection() {
                 </span>
               </div>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/56">
-                The goal is not to display more data. It is to create a disciplined intelligence environment where evidence, routing, and output live together.
+                The goal is not to display more dashboards.  
+The goal is to create a disciplined intelligence environment where evidence, AI interpretation, and decision outputs live in one system.
               </p>
             </div>
           </div>
@@ -432,12 +433,12 @@ function SystemPipelineSection() {
               <div className="max-w-3xl">
                 <p className="section-eyebrow">Core BALLANTIR Intelligence Pipeline</p>
                 <h2 className="section-title mt-4 text-[clamp(1.9rem,5.2vw,4.8rem)] font-semibold">
-                  Video + bot logic + routing = sports intelligence
+                  Film + AI interpretation + search routing = basketball intelligence
                 </h2>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
-                  A compact visual equation for investors, players, and operators: evidence enters,
-                  interpretation compounds, routing sharpens the query, and the output becomes
-                  decision-grade.
+                  A compact visual equation for the platform: film provides the evidence layer,
+AI interprets patterns and context, search and voice route the question,
+and the output becomes decision-grade basketball intelligence.
                 </p>
               </div>
 
@@ -464,11 +465,11 @@ function SystemPipelineSection() {
 
             <div className="mt-6 flex flex-col gap-3 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--accent)]/82">
-                from film. to logic. to leverage.
+                from film → to intelligence → to better decisions
               </p>
               <p className="max-w-2xl text-sm leading-6 text-white/42">
-                Hover each node for layer framing. The microphone remains the signature command
-                surface for routing questions through the system.
+                Each layer represents how the platform converts raw basketball film into structured intelligence.  
+Search and voice remain the primary command surface for routing questions through the system.
               </p>
             </div>
           </div>
@@ -635,8 +636,8 @@ function VideoSection() {
           <p className="section-eyebrow">Platform Vision</p>
           <h2 className="section-title mt-4 font-semibold">See how the intelligence layer comes together.</h2>
           <p className="mt-6 text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
-            A concise walkthrough of how BALLANTIR
-            turns film, search, voice, and structured context into faster basketball decisions.
+            A concise walkthrough of how BALLANTIR turns basketball film, AI interpretation,
+search, and voice commands into faster and more confident basketball decisions.
           </p>
         </div>
 
@@ -785,8 +786,8 @@ function SolutionSection() {
               <p className="section-eyebrow">Command Example</p>
               <h3 className="mt-4 text-2xl font-semibold sm:text-3xl">Ask basketball in plain language.</h3>
               <p className="mt-4 max-w-xl text-sm leading-6 text-white/58 sm:text-base sm:leading-7">
-                The system routes natural-language or microphone input through the right context layers,
-                then returns an answer built for real decisions rather than a pile of dashboards.
+                The system routes natural-language or voice input through the intelligence pipeline,
+then returns answers grounded in film and context rather than disconnected dashboards.
               </p>
             </div>
 
@@ -875,7 +876,7 @@ function DifferenceSection() {
           <p className="section-eyebrow">Why BALLANTIR Is Different</p>
           <h2 className="section-title mt-4 font-semibold">This is not another analytics dashboard.</h2>
           <p className="mt-6 text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
-            BALLANTIR is designed to reduce noise, compress decision time, and keep every answer grounded in what happened on court.
+          BALLANTIR reduces noise, compresses decision time, and ensures every insight is grounded in what actually happened on the court.
           </p>
         </div>
 
@@ -914,7 +915,7 @@ function VisionSection() {
             <p className="section-eyebrow">The Bigger Vision</p>
           </div>
           <h2 className="section-title mt-6 font-semibold">
-            Basketball is the first build in a multi-sport intelligence system.
+            Basketball is the first deployment of a multi-sport intelligence system.
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
             {landingPageContent.vision}
@@ -931,7 +932,7 @@ function CtaSection() {
       <div className="container-shell">
         <div className="panel panel-cinematic rounded-[1.75rem] px-5 py-8 text-center sm:rounded-[2.5rem] sm:px-10 sm:py-14">
           <p className="section-eyebrow">Early Access And Investor Conversations</p>
-          <h2 className="section-title mt-4 font-semibold">Join the first wave of strategic partners.</h2>
+          <h2 className="section-title mt-4 font-semibold">Join the first wave of strategic partners and early operators.</h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
             Meet the platform early, shape the product direction, and start the investor conversation while the system is still selective.
           </p>
