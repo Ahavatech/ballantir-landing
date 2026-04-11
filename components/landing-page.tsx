@@ -658,33 +658,74 @@ search, and voice commands into faster and more confident basketball decisions.
 function VideoPlayer() {
   const [showOverlay, setShowOverlay] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = 0.75;
+    }
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (videoRef.current) {
+          if (!entry.isIntersecting) {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
 
   const handlePlayClick = () => {
     setShowOverlay(false);
-    videoRef.current?.play().catch(() => {});
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
   };
 
   return (
-    <div className="video-panel relative aspect-video w-full overflow-hidden rounded-[1.1rem] border border-[var(--accent)]/18 bg-black sm:rounded-[1.5rem]">
-      
+    <div
+      ref={containerRef}
+      className="video-panel relative aspect-video w-full overflow-hidden rounded-[1.1rem] border border-[var(--accent)]/18 bg-black sm:rounded-[1.5rem]"
+    >
       <video
         ref={videoRef}
-        src="https://ballantir.com.s3-website.eu-north-1.amazonaws.com/demo.mp4"
+        src="http://ballantir.com.s3-website.eu-north-1.amazonaws.com/demo.mp4"
         className="h-full w-full object-cover"
-        controls
-        playsInline
         preload="metadata"
+        loop
+        playsInline
       />
-
       {showOverlay && (
         <button
           type="button"
           onClick={handlePlayClick}
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 py-12 text-center sm:px-6 sm:py-6 bg-black/40 hover:bg-black/30 transition"
+          className="absolute inset-0 flex flex-col items-center justify-center px-4 py-12 text-center sm:px-6 sm:py-6 hover:bg-black/10 transition"
         >
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 sm:h-20 sm:w-20">
+          <div className="video-play-ring flex h-16 w-16 items-center justify-center rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 sm:h-20 sm:w-20">
             <Play className="h-6 w-6 text-[var(--accent)] sm:h-8 sm:w-8" />
           </div>
+          <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--accent)] sm:mt-6 sm:text-xs sm:tracking-[0.26em]">
+            platform walkthrough
+          </p>
+          <h3 className="mt-2 text-2xl font-semibold text-white sm:mt-3 sm:text-3xl">Cinematic product demo</h3>
+          <p className="mt-3 max-w-xl text-xs leading-5 text-white/55 sm:mt-4 sm:max-w-2xl sm:text-sm sm:leading-6">
+            How BALLANTIR
+            changes the speed and quality of decision-making for teams, players, and investors.
+          </p>
         </button>
       )}
     </div>
