@@ -703,7 +703,7 @@ function VideoPlayer() {
     >
       <video
         ref={videoRef}
-        src="http://ballantir.com.s3-website.eu-north-1.amazonaws.com/demo.mp4"
+        src="https://ballantir.com.s3-website.eu-north-1.amazonaws.com/demo.mp4"
         className="h-full w-full object-cover"
         preload="metadata"
         loop
