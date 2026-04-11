@@ -669,7 +669,11 @@ function VideoPlayer() {
       
       <video
         ref={videoRef}
+<<<<<<< HEAD
         src="https://ballantir.com.s3.eu-north-1.amazonaws.com/demo.mp4"
+=======
+        src="https://ballantir.com.s3-website.eu-north-1.amazonaws.com/demo.mp4"
+>>>>>>> 19506931da80d044d6910ae1b1d9135febe6ef5a
         className="h-full w-full object-cover"
         controls
         playsInline
