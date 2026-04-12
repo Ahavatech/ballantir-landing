@@ -696,7 +696,6 @@ function VideoPlayer() {
         loop
         playsInline
         autoPlay
-        muted
       />
     </div>
   );
