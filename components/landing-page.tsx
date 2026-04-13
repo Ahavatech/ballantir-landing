@@ -690,7 +690,7 @@ function VideoPlayer() {
     >
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/deadhm1mm/video/upload/v1775999600/ballantir_20mb_gjo7rf.mp4"
+        src="https://www.ballantirbasketball.com/demo.mp4"
         className="h-full w-full object-cover"
         preload="auto"
         loop
